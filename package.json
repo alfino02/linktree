@@ -1,0 +1,10 @@
+{
+  "name": "piknikenthusiast-linktree",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@netlify/blobs": "^11.1.9",
+    "@netlify/functions": "^6.1.1"
+  }
+}
