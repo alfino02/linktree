@@ -46,6 +46,7 @@
         }
         window.PiknikRenderer.render(app, data, {
           embedded: false,
+          site: activeSite,
           activeCategory: activeCategory,
           searchQuery: searchQuery,
           onFilterChange: function (cat, query) {

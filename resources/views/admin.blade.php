@@ -855,6 +855,26 @@
         if (prevLabel) {
           prevLabel.textContent = "Preview Langsung · " + siteMeta.label;
         }
+        var isLombok = activeSiteId === "lombok";
+        var bgLabels = isLombok
+          ? {
+              wave: ["Foto, Gelombang & Pulau Lombok", "Sampul foto + siluet Pulau Lombok, 3 Gili & Sasak"],
+              panorama: ["Foto & Topografi Pulau Lombok", "Sampul foto + kontur peta Lombok, Rinjani & Gili"],
+              topography: ["Topografi Pulau Lombok", "Kontur Pulau Lombok, Rinjani & motif Lumbung Sasak"]
+            }
+          : {
+              wave: ["Foto & Gelombang", "Sampul foto + gelombang sutra"],
+              panorama: ["Foto & Topografi", "Sampul foto + kontur peta halus"],
+              topography: ["Topografi Halus", "Kontur gunung & gradasi lembut"]
+            };
+        Object.keys(bgLabels).forEach(function (bgKey) {
+          var btn = document.querySelector('#bgStyleOptions [data-bg="' + bgKey + '"]');
+          if (!btn) return;
+          var nameEl = btn.querySelector(".adm-theme-name");
+          var descEl = btn.querySelector(".adm-theme-desc");
+          if (nameEl) nameEl.textContent = bgLabels[bgKey][0];
+          if (descEl) descEl.textContent = bgLabels[bgKey][1];
+        });
         syncSaveStatusText(true);
       }
 
@@ -900,6 +920,7 @@
         if (!screen) return;
         R.render(screen, data, {
           embedded: true,
+          site: activeSiteId,
           activeCategory: previewCat,
           searchQuery: previewSearch,
           onFilterChange: function (cat, q) {
