@@ -52,7 +52,7 @@ jobs:
           envs: GHCR_PAT
           script_stop: true
           script: |
-            cd ~/piknik
+            cd ~/apps/piknikasik
             echo "$GHCR_PAT" | docker login ghcr.io -u alfino02 --password-stdin
             docker compose pull
             docker compose up -d --remove-orphans
