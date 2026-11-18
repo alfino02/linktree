@@ -1,20 +1,23 @@
-# Linktree — Piknik Enthusiast
+# Piknik Enthusiast & Lombok Enthusiast — Multi-Linktree (Laravel)
 
-Halaman Linktree sederhana, elegan, dan ramah pengguna untuk **Piknik Enthusiast** (`https://piknikenthusiast.com/`), mencakup **seluruh 11 destinasi wisata** beserta tampilan **Admin** yang mendukung penyimpanan live via **Netlify Blobs**.
+Aplikasi Multi-Linktree berbasis **Laravel** untuk mengelola dua halaman Linktree sekaligus melalui satu halaman Admin (`/admin`):
+1. **Piknik Enthusiast** (Jawa Timur) — diakses di `/` atau `/piknik`
+2. **Lombok Enthusiast** (Pulau Lombok) — diakses di `/lombok`
 
-## Struktur Proyek
+## Fitur Utama
+- **Satu Admin untuk 2 Linktree (`/admin`)**: Kelola profil, tombol CTA, media sosial, menu tautan, daftar destinasi, serta tema & gradien warna masing-masing Linktree secara terpisah.
+- **Penyimpanan Database Server (`SQLite` / `MySQL`)**: Setiap klik tombol **Simpan Live** menyimpan perubahan langsung ke tabel `linktree_contents`.
+- **Insight Pengunjung & Generator Link Pelacakan**: Melacak jumlah pengunjung unik & tampilan harian (WIB), sumber trafik (`Instagram`, `TikTok`, `WhatsApp`, `Facebook`, `YouTube`, `Google`), perangkat, dan lokasi secara terpisah untuk Piknik dan Lombok.
 
-- `public/index.html` — Halaman publik Linktree untuk pengunjung.
-- `public/admin.html` — Tampilan Admin dengan *live mobile preview* (dilindungi login password).
-- `public/data.js` — Data konten & konfigurasi awal (*fallback* offline/lokal).
-- `public/renderer.js` — Mesin render bersama dan sinkronisasi cloud/lokal.
-- `public/styles.css` & `public/admin.css` — Stylesheet halaman publik dan admin.
-- `netlify/functions/content.mts` — Serverless Function (`/api/content`) untuk membaca dan menyimpan perubahan Admin secara live ke Netlify Blobs.
-- `netlify.toml` — Konfigurasi publish (`public/`) dan bundling Functions.
+## Cara Menjalankan di Lokal
+```bash
+composer install
+cp .env.example .env
+php artisan key:generate
+php artisan migrate
+php artisan serve
+```
 
-## Cara Menggunakan di Netlify (Live)
-
-1. Buka alamat situs Netlify Anda untuk melihat halaman publik.
-2. Buka `/admin` dan masukkan password admin.
-3. Ubah profil, menu tautan, destinasi, atau tampilan, lalu klik **Simpan Live**. Perubahan langsung tampil untuk seluruh pengunjung.
-4. Anda dapat mengganti password Admin kapan saja di tab **Tampilan & Data**.
+- **Piknik Enthusiast**: `http://127.0.0.1:8000/`
+- **Lombok Enthusiast**: `http://127.0.0.1:8000/lombok`
+- **Halaman Admin**: `http://127.0.0.1:8000/admin` (Password default: `langsungakses`)
