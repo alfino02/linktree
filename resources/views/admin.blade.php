@@ -8,8 +8,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="{{ asset('styles.css') }}" />
-  <link rel="stylesheet" href="{{ asset('admin.css') }}" />
+  <link rel="stylesheet" href="/styles.css?v={{ @filemtime(public_path('styles.css')) ?: '20261119' }}" />
+  <link rel="stylesheet" href="/admin.css?v={{ @filemtime(public_path('admin.css')) ?: '20261119' }}" />
 </head>
 <body class="adm-body">
 
@@ -36,7 +36,7 @@
       </form>
 
       <p class="adm-gate-hint">Gunakan password admin Anda (dapat diganti di tab Tampilan &amp; Data)</p>
-      <a href="{{ url('/') }}" class="adm-gate-back">← Kembali ke Halaman Publik</a>
+      <a href="/" class="adm-gate-back">← Kembali ke Halaman Publik</a>
     </div>
   </div>
 
@@ -64,7 +64,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2" width="10" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
             <span>Preview</span>
           </button>
-          <a id="btnOpenPublicPage" href="{{ url('/') }}" target="_blank" class="adm-btn">
+          <a id="btnOpenPublicPage" href="/" target="_blank" class="adm-btn">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
             <span id="btnOpenPublicLabel" class="adm-btn-text-hide-sm">Buka Halaman</span>
           </a>
@@ -682,8 +682,8 @@
     </div>
   </div>
 
-  <script src="{{ asset('data.js') }}"></script>
-  <script src="{{ asset('renderer.js') }}"></script>
+  <script src="/data.js?v={{ @filemtime(public_path('data.js')) ?: '20261119' }}"></script>
+  <script src="/renderer.js?v={{ @filemtime(public_path('renderer.js')) ?: '20261119' }}"></script>
   <script>
     (function () {
       "use strict";

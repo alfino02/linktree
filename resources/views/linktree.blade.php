@@ -15,19 +15,25 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="{{ asset('styles.css') }}" />
+  <link rel="stylesheet" href="/styles.css?v={{ @filemtime(public_path('styles.css')) ?: '20261119' }}" />
   <script>window.LINKTREE_FORCE_SITE = @json($site ?? 'piknik');</script>
 </head>
 <body class="lt-page-body">
   <main id="app"></main>
 
-  <script src="{{ asset('data.js') }}"></script>
-  <script src="{{ asset('renderer.js') }}"></script>
+  <script src="/data.js?v={{ @filemtime(public_path('data.js')) ?: '20261119' }}"></script>
+  <script src="/renderer.js?v={{ @filemtime(public_path('renderer.js')) ?: '20261119' }}"></script>
   <script>
     (function () {
       var app = document.getElementById("app");
-      var activeSite = window.PiknikStore.detectSiteId();
-      window.PiknikStore.setSite(activeSite);
+      var store = window.PiknikStore || {};
+      var activeSite =
+        typeof store.detectSiteId === "function"
+          ? store.detectSiteId()
+          : (window.LINKTREE_FORCE_SITE || "piknik");
+      if (typeof store.setSite === "function") {
+        store.setSite(activeSite);
+      }
       var activeCategory = "all";
       var searchQuery = "";
       var cloudData = null;

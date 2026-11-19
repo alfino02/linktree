@@ -2,25 +2,34 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class LinktreePageController extends Controller
 {
-    public function piknik(Request $request): View
+    private function noCacheView(string $view, array $data = []): Response
+    {
+        return response()
+            ->view($view, $data)
+            ->header('Cache-Control', 'no-cache, no-store, must-revalidate')
+            ->header('Pragma', 'no-cache')
+            ->header('Expires', '0');
+    }
+
+    public function piknik(Request $request): Response
     {
         $site = strtolower((string) $request->query('site', 'piknik')) === 'lombok' ? 'lombok' : 'piknik';
 
-        return view('linktree', ['site' => $site]);
+        return $this->noCacheView('linktree', ['site' => $site]);
     }
 
-    public function lombok(): View
+    public function lombok(): Response
     {
-        return view('linktree', ['site' => 'lombok']);
+        return $this->noCacheView('linktree', ['site' => 'lombok']);
     }
 
-    public function admin(): View
+    public function admin(): Response
     {
-        return view('admin');
+        return $this->noCacheView('admin');
     }
 }
