@@ -182,14 +182,14 @@ body.lt-page-body {
   --lt-accent: #ff921e;
   --lt-accent-soft: rgba(245, 138, 22, 0.25);
   --lt-accent-text: #ffaa3b;
-  --lt-cta-bg: #c2410c;
-  --lt-cta-gradient: linear-gradient(125deg, #d94f04 0%, #bd3a08 52%, #8c2708 100%);
-  --lt-cta-shadow: 0 14px 32px -10px rgba(189, 58, 8, 0.58);
-  --lt-cover-gradient: linear-gradient(135deg, #061c46 0%, #1556b8 55%, #b84208 100%);
-  --lt-cta-hover: #d94f04;
+  --lt-cta-bg: #e35c12;
+  --lt-cta-gradient: linear-gradient(90deg, #e35c12 0%, #ea8029 50%, #f3a43f 100%);
+  --lt-cta-shadow: 0 14px 32px -10px rgba(227, 92, 18, 0.58);
+  --lt-cover-gradient: linear-gradient(135deg, #061c46 0%, #1556b8 55%, #e35c12 100%);
+  --lt-cta-hover: #ea6f1e;
   --lt-cta-text: #ffffff;
   --lt-cta-sub: rgba(255, 255, 255, 0.94);
-  --lt-pill-active-bg: #c2410c;
+  --lt-pill-active-bg: #e35c12;
   --lt-pill-active-text: #ffffff;
   --lt-shadow: 0 4px 16px -4px rgba(2, 16, 48, 0.48);
   --lt-shadow-hover: 0 12px 26px -8px rgba(2, 16, 48, 0.65);
@@ -225,14 +225,14 @@ body.lt-page-body {
   --lt-accent: #f48526;
   --lt-accent-soft: rgba(244, 133, 38, 0.2);
   --lt-accent-text: #fdba74;
-  --lt-cta-bg: #c2410c;
-  --lt-cta-gradient: linear-gradient(125deg, #d94f04 0%, #bd3a08 55%, #8c2708 100%);
-  --lt-cta-shadow: 0 12px 28px -10px rgba(189, 58, 8, 0.52);
+  --lt-cta-bg: #e35c12;
+  --lt-cta-gradient: linear-gradient(90deg, #e35c12 0%, #ea8029 50%, #f3a43f 100%);
+  --lt-cta-shadow: 0 12px 28px -10px rgba(227, 92, 18, 0.52);
   --lt-cover-gradient: linear-gradient(135deg, #0b162c 0%, #24365c 52%, #b84a1c 100%);
-  --lt-cta-hover: #d94f04;
+  --lt-cta-hover: #ea6f1e;
   --lt-cta-text: #ffffff;
   --lt-cta-sub: rgba(255, 255, 255, 0.94);
-  --lt-pill-active-bg: #c2410c;
+  --lt-pill-active-bg: #e35c12;
   --lt-pill-active-text: #ffffff;
   --lt-shadow: 0 2px 10px rgba(0, 0, 0, 0.24);
   --lt-shadow-hover: 0 12px 26px -8px rgba(0, 0, 0, 0.5);
@@ -822,6 +822,8 @@ body.lt-page-body {
 
 /* Primary WhatsApp CTA */
 .lt-cta-card {
+  position: relative;
+  overflow: hidden;
   width: 100%;
   min-width: 0;
   display: flex;
@@ -834,16 +836,45 @@ body.lt-page-body {
   background: var(--lt-cta-bg);
   color: var(--lt-cta-text);
   text-decoration: none;
-  box-shadow: 0 8px 20px -10px rgba(14, 32, 64, 0.35);
-  transition: background-color 0.18s ease, transform 0.18s ease;
+  box-shadow:
+    0 0 0 1px rgba(255, 196, 130, 0.35),
+    0 0 22px rgba(234, 88, 12, 0.45),
+    0 12px 30px -8px rgba(194, 65, 12, 0.58);
+  transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.25s ease, filter 0.2s ease;
+}
+
+.lt-cta-card::after {
+  content: "";
+  position: absolute;
+  top: -40%;
+  left: -65%;
+  width: 46%;
+  height: 180%;
+  background: linear-gradient(
+    110deg,
+    transparent 0%,
+    rgba(255, 232, 196, 0.04) 32%,
+    rgba(255, 240, 214, 0.24) 50%,
+    rgba(255, 232, 196, 0.04) 68%,
+    transparent 100%
+  );
+  transform: skewX(-18deg);
+  pointer-events: none;
+  animation: ltCtaShimmer 4.8s ease-in-out infinite;
 }
 
 .lt-cta-card:hover {
   background: var(--lt-cta-hover);
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  box-shadow:
+    0 0 0 1px rgba(255, 214, 158, 0.58),
+    0 0 30px rgba(249, 115, 22, 0.72),
+    0 14px 36px -6px rgba(234, 88, 12, 0.72);
 }
 
 .lt-cta-left {
+  position: relative;
+  z-index: 1;
   display: flex;
   align-items: center;
   gap: 12px;
@@ -855,7 +886,8 @@ body.lt-page-body {
   width: 40px;
   height: 40px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.10);
+  box-shadow: 0 0 12px rgba(255, 210, 155, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.22);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1520,31 +1552,95 @@ body.lt-page-body {
   outline-offset: 2px;
 }
 
-/* Layered Atmosphere Polish (non-clean modes) */
+/* Layered Atmosphere Polish & Button Glow */
+@keyframes ltCtaShimmer {
+  0%, 58% {
+    left: -70%;
+    opacity: 0;
+  }
+  65% {
+    opacity: 1;
+  }
+  92% {
+    left: 135%;
+    opacity: 0.9;
+  }
+  100% {
+    left: 135%;
+    opacity: 0;
+  }
+}
+
+@keyframes ltCtaGlowPulseDark {
+  0%, 100% {
+    box-shadow:
+      0 0 0 1px rgba(255, 196, 130, 0.42),
+      0 0 22px rgba(249, 115, 22, 0.52),
+      0 10px 32px -4px rgba(234, 88, 12, 0.62),
+      inset 0 1px 1px rgba(255, 224, 180, 0.34);
+  }
+  50% {
+    box-shadow:
+      0 0 0 1.5px rgba(255, 212, 154, 0.62),
+      0 0 34px rgba(249, 115, 22, 0.78),
+      0 12px 42px -4px rgba(234, 88, 12, 0.78),
+      inset 0 1px 2px rgba(255, 232, 196, 0.42);
+  }
+}
+
+@keyframes ltCtaGlowPulseLight {
+  0%, 100% {
+    box-shadow:
+      0 0 0 1px rgba(14, 32, 64, 0.24),
+      0 0 18px rgba(20, 118, 185, 0.32),
+      0 10px 26px -6px rgba(14, 32, 64, 0.44),
+      inset 0 1px 1px rgba(255, 255, 255, 0.24);
+  }
+  50% {
+    box-shadow:
+      0 0 0 1.5px rgba(20, 118, 185, 0.42),
+      0 0 28px rgba(20, 118, 185, 0.48),
+      0 12px 34px -6px rgba(14, 32, 64, 0.56),
+      inset 0 1px 2px rgba(255, 255, 255, 0.34);
+  }
+}
+
 .lt-root:not([data-bg="clean"]) .lt-cta-card {
-  background-image:
-    radial-gradient(circle at 16% 24%, rgba(255, 196, 130, 0.10), transparent 52%),
-    var(--lt-cta-gradient);
-  border: 1px solid rgba(255, 200, 150, 0.28);
-  box-shadow: var(--lt-cta-shadow, 0 12px 26px -12px rgba(14, 32, 64, 0.42)), inset 0 1px 0 rgba(255, 215, 175, 0.24);
+  background-image: var(--lt-cta-gradient);
+  border: 1px solid rgba(255, 200, 150, 0.36);
+  animation: ltCtaGlowPulseLight 3.2s ease-in-out infinite;
+}
+
+.lt-root[data-tone="dark"] .lt-cta-card {
+  border: 1px solid rgba(255, 198, 136, 0.48);
+  animation: ltCtaGlowPulseDark 3.2s ease-in-out infinite;
 }
 
 .lt-root:not([data-bg="clean"]) .lt-cta-card .lt-cta-title,
 .lt-root:not([data-bg="clean"]) .lt-cta-card .lt-cta-sub {
-  text-shadow: 0 1px 2px rgba(42, 12, 3, 0.35);
+  text-shadow: 0 1px 2px rgba(42, 12, 3, 0.32);
 }
 
 .lt-root:not([data-bg="clean"]) .lt-cta-card:hover {
-  background-image:
-    radial-gradient(circle at 16% 24%, rgba(255, 196, 130, 0.14), transparent 52%),
-    var(--lt-cta-gradient);
-  filter: brightness(1.07);
+  background-image: var(--lt-cta-gradient);
+  filter: brightness(1.06);
+}
+
+.lt-root[data-tone="dark"] .lt-cta-card:hover {
+  box-shadow:
+    0 0 0 1.5px rgba(255, 224, 175, 0.72),
+    0 0 38px rgba(249, 115, 22, 0.85),
+    0 14px 44px -4px rgba(234, 88, 12, 0.82),
+    inset 0 1px 2px rgba(255, 236, 204, 0.45);
 }
 
 .lt-root:not([data-bg="clean"]) .lt-filter-pill.is-active {
   background: var(--lt-cta-gradient);
-  border-color: rgba(255, 200, 150, 0.28);
-  box-shadow: 0 6px 18px -5px rgba(189, 58, 8, 0.54), inset 0 1px 0 rgba(255, 215, 175, 0.24);
+  border-color: rgba(255, 204, 150, 0.45);
+  box-shadow:
+    0 0 16px rgba(249, 115, 22, 0.50),
+    0 6px 20px -4px rgba(189, 58, 8, 0.62),
+    inset 0 1px 0 rgba(255, 224, 184, 0.30);
 }
 
 .lt-root[data-tone="dark"] .lt-topbar.is-over-cover .lt-location-chip,
@@ -1555,14 +1651,16 @@ body.lt-page-body {
 
 .lt-root[data-tone="dark"] .lt-hero-card .lt-social-btn {
   background: rgba(20, 66, 145, 0.44);
-  border-color: rgba(120, 188, 255, 0.28);
+  border-color: rgba(120, 188, 255, 0.32);
   color: #ffffff;
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.18), var(--lt-shadow);
 }
 
 .lt-root[data-tone="dark"] .lt-hero-card .lt-social-btn:hover {
-  background: rgba(30, 88, 185, 0.68);
-  border-color: rgba(165, 215, 255, 0.52);
+  background: rgba(30, 88, 185, 0.72);
+  border-color: rgba(165, 215, 255, 0.68);
   color: #ffffff;
+  box-shadow: 0 0 18px rgba(56, 189, 248, 0.48), 0 6px 16px -4px rgba(2, 16, 48, 0.55);
 }
 
 .lt-root:not([data-bg="clean"]) .lt-link-card,
@@ -1576,7 +1674,25 @@ body.lt-page-body {
 
 .lt-root[data-tone="dark"]:not([data-bg="clean"]) .lt-link-card,
 .lt-root[data-tone="dark"]:not([data-bg="clean"]) .lt-dest-card {
-  box-shadow: var(--lt-shadow), inset 0 1px 0 rgba(165, 218, 255, 0.16);
+  box-shadow:
+    0 0 16px -4px rgba(56, 189, 248, 0.22),
+    var(--lt-shadow),
+    inset 0 1px 0 rgba(165, 218, 255, 0.20);
+}
+
+.lt-root[data-tone="dark"]:not([data-bg="clean"]) .lt-link-card:hover,
+.lt-root[data-tone="dark"]:not([data-bg="clean"]) .lt-dest-card:hover {
+  box-shadow:
+    0 0 24px -2px rgba(56, 189, 248, 0.42),
+    var(--lt-shadow-hover),
+    inset 0 1px 0 rgba(190, 232, 255, 0.34);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lt-cta-card,
+  .lt-cta-card::after {
+    animation: none !important;
+  }
 }
 
 .lt-root[data-bg="wave"] .lt-link-icon {
