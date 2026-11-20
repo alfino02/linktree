@@ -182,14 +182,14 @@ body.lt-page-body {
   --lt-accent: #ff921e;
   --lt-accent-soft: rgba(245, 138, 22, 0.25);
   --lt-accent-text: #ffaa3b;
-  --lt-cta-bg: #f5820b;
-  --lt-cta-gradient: linear-gradient(122deg, #ffb01f 0%, #f9860b 48%, #e45e00 100%);
-  --lt-cta-shadow: 0 14px 32px -10px rgba(245, 130, 11, 0.58);
-  --lt-cover-gradient: linear-gradient(135deg, #061c46 0%, #1556b8 55%, #d97706 100%);
-  --lt-cta-hover: #ff9624;
+  --lt-cta-bg: #c2410c;
+  --lt-cta-gradient: linear-gradient(125deg, #d94f04 0%, #bd3a08 52%, #8c2708 100%);
+  --lt-cta-shadow: 0 14px 32px -10px rgba(189, 58, 8, 0.58);
+  --lt-cover-gradient: linear-gradient(135deg, #061c46 0%, #1556b8 55%, #b84208 100%);
+  --lt-cta-hover: #d94f04;
   --lt-cta-text: #ffffff;
-  --lt-cta-sub: rgba(255, 255, 255, 0.92);
-  --lt-pill-active-bg: #f5820b;
+  --lt-cta-sub: rgba(255, 255, 255, 0.94);
+  --lt-pill-active-bg: #c2410c;
   --lt-pill-active-text: #ffffff;
   --lt-shadow: 0 4px 16px -4px rgba(2, 16, 48, 0.48);
   --lt-shadow-hover: 0 12px 26px -8px rgba(2, 16, 48, 0.65);
@@ -225,14 +225,14 @@ body.lt-page-body {
   --lt-accent: #f48526;
   --lt-accent-soft: rgba(244, 133, 38, 0.2);
   --lt-accent-text: #fdba74;
-  --lt-cta-bg: #ea6c05;
-  --lt-cta-gradient: linear-gradient(135deg, #ffa01a 0%, #ea6c05 100%);
-  --lt-cta-shadow: 0 12px 28px -10px rgba(234, 108, 5, 0.5);
+  --lt-cta-bg: #c2410c;
+  --lt-cta-gradient: linear-gradient(125deg, #d94f04 0%, #bd3a08 55%, #8c2708 100%);
+  --lt-cta-shadow: 0 12px 28px -10px rgba(189, 58, 8, 0.52);
   --lt-cover-gradient: linear-gradient(135deg, #0b162c 0%, #24365c 52%, #b84a1c 100%);
-  --lt-cta-hover: #f48526;
+  --lt-cta-hover: #d94f04;
   --lt-cta-text: #ffffff;
-  --lt-cta-sub: rgba(255, 255, 255, 0.9);
-  --lt-pill-active-bg: #f48526;
+  --lt-cta-sub: rgba(255, 255, 255, 0.94);
+  --lt-pill-active-bg: #c2410c;
   --lt-pill-active-text: #ffffff;
   --lt-shadow: 0 2px 10px rgba(0, 0, 0, 0.24);
   --lt-shadow-hover: 0 12px 26px -8px rgba(0, 0, 0, 0.5);
@@ -309,13 +309,13 @@ body.lt-page-body {
   --lt-accent: #ee922b;
   --lt-accent-soft: rgba(238, 146, 43, 0.2);
   --lt-accent-text: #fcd34d;
-  --lt-cta-bg: #d97706;
-  --lt-cta-gradient: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
-  --lt-cta-shadow: 0 12px 28px -10px rgba(217, 119, 6, 0.48);
+  --lt-cta-bg: #b44606;
+  --lt-cta-gradient: linear-gradient(125deg, #c95206 0%, #a83c07 55%, #7e2a07 100%);
+  --lt-cta-shadow: 0 12px 28px -10px rgba(168, 60, 7, 0.52);
   --lt-cover-gradient: linear-gradient(135deg, #091d18 0%, #164438 55%, #b45309 100%);
-  --lt-cta-hover: #ea8817;
+  --lt-cta-hover: #c95206;
   --lt-cta-text: #ffffff;
-  --lt-cta-sub: rgba(255, 255, 255, 0.9);
+  --lt-cta-sub: rgba(255, 255, 255, 0.94);
   --lt-pill-active-bg: #ee922b;
   --lt-pill-active-text: #0b1c17;
   --lt-shadow: 0 2px 10px rgba(0, 0, 0, 0.22);
@@ -409,15 +409,6 @@ body.lt-page-body {
   pointer-events: none;
   overflow: hidden;
   z-index: 1;
-}
-
-.lt-lombok-hero-map-svg {
-  position: absolute;
-  right: 2px;
-  top: 4px;
-  width: 192px;
-  height: auto;
-  display: block;
 }
 
 .lt-lombok-hero-lumbung-svg {
@@ -1532,23 +1523,28 @@ body.lt-page-body {
 /* Layered Atmosphere Polish (non-clean modes) */
 .lt-root:not([data-bg="clean"]) .lt-cta-card {
   background-image:
-    radial-gradient(circle at 16% 24%, rgba(255, 232, 160, 0.24), transparent 52%),
+    radial-gradient(circle at 16% 24%, rgba(255, 196, 130, 0.10), transparent 52%),
     var(--lt-cta-gradient);
-  border: 1px solid rgba(255, 224, 178, 0.28);
-  box-shadow: var(--lt-cta-shadow, 0 12px 26px -12px rgba(14, 32, 64, 0.42)), inset 0 1px 0 rgba(255, 240, 200, 0.34);
+  border: 1px solid rgba(255, 200, 150, 0.28);
+  box-shadow: var(--lt-cta-shadow, 0 12px 26px -12px rgba(14, 32, 64, 0.42)), inset 0 1px 0 rgba(255, 215, 175, 0.24);
+}
+
+.lt-root:not([data-bg="clean"]) .lt-cta-card .lt-cta-title,
+.lt-root:not([data-bg="clean"]) .lt-cta-card .lt-cta-sub {
+  text-shadow: 0 1px 2px rgba(42, 12, 3, 0.35);
 }
 
 .lt-root:not([data-bg="clean"]) .lt-cta-card:hover {
   background-image:
-    radial-gradient(circle at 16% 24%, rgba(255, 232, 160, 0.28), transparent 52%),
+    radial-gradient(circle at 16% 24%, rgba(255, 196, 130, 0.14), transparent 52%),
     var(--lt-cta-gradient);
   filter: brightness(1.07);
 }
 
 .lt-root:not([data-bg="clean"]) .lt-filter-pill.is-active {
   background: var(--lt-cta-gradient);
-  border-color: rgba(255, 224, 178, 0.28);
-  box-shadow: 0 6px 18px -5px rgba(245, 130, 11, 0.58), inset 0 1px 0 rgba(255, 238, 190, 0.35);
+  border-color: rgba(255, 200, 150, 0.28);
+  box-shadow: 0 6px 18px -5px rgba(189, 58, 8, 0.54), inset 0 1px 0 rgba(255, 215, 175, 0.24);
 }
 
 .lt-root[data-tone="dark"] .lt-topbar.is-over-cover .lt-location-chip,
@@ -1626,12 +1622,6 @@ body.lt-page-body {
   background-size: 270px 270px;
 }
 
-.lt-embedded .lt-lombok-hero-map-svg {
-  width: 114px;
-  right: 2px;
-  top: 2px;
-}
-
 .lt-embedded .lt-lombok-hero-lumbung-svg {
   width: 56px;
   left: 10px;
@@ -1660,11 +1650,6 @@ body.lt-page-body {
 }
 
 @media (max-width: 480px) {
-  .lt-lombok-hero-map-svg {
-    width: 118px;
-    right: 2px;
-    top: 2px;
-  }
   .lt-lombok-hero-lumbung-svg {
     width: 58px;
     left: 10px;

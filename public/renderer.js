@@ -231,10 +231,10 @@
     var ctaSub = ctaIsDark ? "rgba(255, 255, 255, 0.86)" : "rgba(15, 23, 42, 0.74)";
     var ctaHover = ctaIsDark ? mixHex(ctaBg, "#ffffff", 0.12) : mixHex(ctaBg, "#0f172a", 0.08);
     var ctaGradient =
-      "linear-gradient(135deg, " +
-      ctaBg +
+      "linear-gradient(130deg, " +
+      (ctaIsDark ? mixHex(ctaBg, "#000000", 0.06) : ctaBg) +
       " 0%, " +
-      (ctaIsDark ? mixHex(ctaBg, "#ffffff", 0.16) : mixHex(ctaBg, "#ffffff", 0.22)) +
+      (ctaIsDark ? mixHex(ctaBg, "#000000", 0.28) : mixHex(ctaBg, "#ffffff", 0.18)) +
       " 100%)";
 
     var accentLum = getLuminance(accent);
@@ -1244,9 +1244,6 @@
     var lombokHeroOrnamentsHtml =
       isLombokSite && hasPatternBg
         ? '<div class="lt-lombok-hero-art" aria-hidden="true">' +
-          '<svg class="lt-lombok-hero-map-svg" viewBox="0 12 195 180" preserveAspectRatio="xMidYMid meet">' +
-          buildLombokIslandMotif("lt-lombok-hero-map", "hero") +
-          "</svg>" +
           '<svg class="lt-lombok-hero-lumbung-svg" viewBox="-36 -38 72 78" preserveAspectRatio="xMidYMid meet">' +
           buildLombokCulturalMotif("hero") +
           "</svg>" +
