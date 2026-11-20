@@ -1080,63 +1080,87 @@
     var LOMBOK_COAST_RING_PATH =
       "M56,44 C70,46 78,36 90,29 C106,20 126,18 145,24 C162,30 175,43 181,60 C186,74 182,92 176,106 C173,116 176,126 181,138 C187,151 189,166 180,176 C171,184 155,181 146,172 C140,165 139,156 136,156 C133,156 131,166 126,173 C117,180 103,178 90,179 C76,180 65,182 52,178 C36,173 18,171 7,163 C-2,156 -1,141 11,134 C23,128 40,133 50,130 C55,128 56,123 52,117 C44,107 41,93 45,79 C48,68 45,58 50,49 C52,45 54,44 56,44 Z";
 
-    function buildLombokIslandMotif(scaleClass) {
+    function buildLombokIslandMotif(scaleClass, mode) {
+      var isHero = mode === "hero";
+      var opAcc = isHero ? "0.62" : "0.44";
+      var opAccStrong = isHero ? "0.74" : "0.52";
+      var opFill = isHero ? "0.13" : "0.08";
+      var opTxt = isHero ? "0.38" : "0.24";
+      var opTxtSoft = isHero ? "0.28" : "0.18";
       return (
         '<g class="' + (scaleClass || "lt-lombok-island-group") + '" fill="none" stroke-linecap="round" stroke-linejoin="round">' +
         /* Outer bathymetry contour */
-        '<path d="' + LOMBOK_COAST_RING_PATH + '" stroke="var(--lt-text)" stroke-opacity="0.16" stroke-width="1" stroke-dasharray="3.5 4"/>' +
+        '<path d="' + LOMBOK_COAST_RING_PATH + '" stroke="var(--lt-text)" stroke-opacity="' + opTxtSoft + '" stroke-width="1.15" stroke-dasharray="3.5 4"/>' +
         /* Main Pulau Lombok silhouette & coastline */
-        '<path d="' + LOMBOK_ISLAND_PATH + '" fill="var(--lt-accent)" fill-opacity="0.065" stroke="var(--lt-accent)" stroke-opacity="0.36" stroke-width="1.45"/>' +
+        '<path d="' + LOMBOK_ISLAND_PATH + '" fill="var(--lt-accent)" fill-opacity="' + opFill + '" stroke="var(--lt-accent)" stroke-opacity="' + opAcc + '" stroke-width="' + (isHero ? "1.75" : "1.5") + '"/>' +
         /* 3 Gili Islands (Trawangan, Meno, Air) + Reef halo */
-        '<path d="M18,34 C26,28 48,36 56,46 C59,51 54,56 45,55 C34,53 20,46 17,40 C16,37 16,35 18,34 Z" stroke="var(--lt-text)" stroke-opacity="0.14" stroke-width="0.9" stroke-dasharray="2 3"/>' +
-        '<ellipse cx="49" cy="49" rx="3.9" ry="2.7" transform="rotate(-18 49 49)" fill="var(--lt-accent)" fill-opacity="0.18" stroke="var(--lt-accent)" stroke-opacity="0.45" stroke-width="1.2"/>' +
-        '<ellipse cx="39" cy="44" rx="3.3" ry="2.3" transform="rotate(-14 39 44)" fill="var(--lt-accent)" fill-opacity="0.18" stroke="var(--lt-accent)" stroke-opacity="0.45" stroke-width="1.2"/>' +
-        '<ellipse cx="27" cy="39" rx="5.2" ry="3.5" transform="rotate(-22 27 39)" fill="var(--lt-accent)" fill-opacity="0.22" stroke="var(--lt-accent)" stroke-opacity="0.48" stroke-width="1.25"/>' +
+        '<path d="M18,34 C26,28 48,36 56,46 C59,51 54,56 45,55 C34,53 20,46 17,40 C16,37 16,35 18,34 Z" stroke="var(--lt-text)" stroke-opacity="' + opTxtSoft + '" stroke-width="1" stroke-dasharray="2 3"/>' +
+        '<ellipse cx="49" cy="49" rx="4.2" ry="2.9" transform="rotate(-18 49 49)" fill="var(--lt-accent)" fill-opacity="0.28" stroke="var(--lt-accent)" stroke-opacity="' + opAccStrong + '" stroke-width="1.3"/>' +
+        '<ellipse cx="39" cy="44" rx="3.5" ry="2.5" transform="rotate(-14 39 44)" fill="var(--lt-accent)" fill-opacity="0.28" stroke="var(--lt-accent)" stroke-opacity="' + opAccStrong + '" stroke-width="1.3"/>' +
+        '<ellipse cx="27" cy="39" rx="5.5" ry="3.8" transform="rotate(-22 27 39)" fill="var(--lt-accent)" fill-opacity="0.34" stroke="var(--lt-accent)" stroke-opacity="' + opAccStrong + '" stroke-width="1.4"/>' +
         /* Secret Gili Sekotong (Nanggu, Sudak, Kedis) & East Gili */
-        '<circle cx="35" cy="131" r="2" fill="var(--lt-accent)" fill-opacity="0.16" stroke="var(--lt-accent)" stroke-opacity="0.38" stroke-width="1"/>' +
-        '<circle cx="42" cy="129" r="1.6" fill="var(--lt-accent)" fill-opacity="0.16" stroke="var(--lt-accent)" stroke-opacity="0.38" stroke-width="1"/>' +
-        '<circle cx="48" cy="132" r="1.5" fill="var(--lt-accent)" fill-opacity="0.16" stroke="var(--lt-accent)" stroke-opacity="0.38" stroke-width="1"/>' +
-        '<circle cx="179" cy="76" r="1.7" stroke="var(--lt-text)" stroke-opacity="0.24" stroke-width="1"/>' +
-        '<circle cx="163" cy="173" r="1.6" stroke="var(--lt-accent)" stroke-opacity="0.34" stroke-width="1"/>' +
+        '<circle cx="35" cy="131" r="2.2" fill="var(--lt-accent)" fill-opacity="0.26" stroke="var(--lt-accent)" stroke-opacity="' + opAcc + '" stroke-width="1.1"/>' +
+        '<circle cx="42" cy="129" r="1.8" fill="var(--lt-accent)" fill-opacity="0.26" stroke="var(--lt-accent)" stroke-opacity="' + opAcc + '" stroke-width="1.1"/>' +
+        '<circle cx="48" cy="132" r="1.7" fill="var(--lt-accent)" fill-opacity="0.26" stroke="var(--lt-accent)" stroke-opacity="' + opAcc + '" stroke-width="1.1"/>' +
+        '<circle cx="179" cy="76" r="1.9" stroke="var(--lt-text)" stroke-opacity="' + opTxt + '" stroke-width="1.1"/>' +
+        '<circle cx="163" cy="173" r="1.8" stroke="var(--lt-accent)" stroke-opacity="' + opAcc + '" stroke-width="1.1"/>' +
         /* Gunung Rinjani topographic elevation rings & Danau Segara Anak caldera */
-        '<path d="M80,75 C78,52 99,38 124,40 C150,42 164,57 160,79 C156,98 135,106 109,102 C90,98 82,88 80,75 Z" stroke="var(--lt-text)" stroke-opacity="0.20" stroke-width="1.05"/>' +
-        '<path d="M93,74 C92,59 106,48 124,49 C142,50 152,61 149,76 C146,90 131,95 113,92 C100,89 94,82 93,74 Z" stroke="var(--lt-text)" stroke-opacity="0.24" stroke-width="1.05"/>' +
-        '<path d="M104,72 C103,63 112,56 124,57 C136,58 142,65 140,74 C138,83 128,86 117,84 C108,82 105,77 104,72 Z" stroke="var(--lt-accent)" stroke-opacity="0.32" stroke-width="1.1"/>' +
-        '<path d="M111,68 C109,75 115,81 124,80 C131,79 135,74 134,69 C129,73 122,74 116,72 C113,71 112,70 111,68 Z" fill="var(--lt-text)" fill-opacity="0.12" stroke="var(--lt-text)" stroke-opacity="0.30" stroke-width="1"/>' +
-        '<path d="M133,62 L138,70 L128,70 Z" fill="var(--lt-accent)" fill-opacity="0.28" stroke="var(--lt-accent)" stroke-opacity="0.48" stroke-width="1"/>' +
+        '<path d="M80,75 C78,52 99,38 124,40 C150,42 164,57 160,79 C156,98 135,106 109,102 C90,98 82,88 80,75 Z" stroke="var(--lt-text)" stroke-opacity="' + opTxt + '" stroke-width="1.2"/>' +
+        '<path d="M93,74 C92,59 106,48 124,49 C142,50 152,61 149,76 C146,90 131,95 113,92 C100,89 94,82 93,74 Z" stroke="var(--lt-text)" stroke-opacity="' + opTxt + '" stroke-width="1.2"/>' +
+        '<path d="M104,72 C103,63 112,56 124,57 C136,58 142,65 140,74 C138,83 128,86 117,84 C108,82 105,77 104,72 Z" stroke="var(--lt-accent)" stroke-opacity="' + opAcc + '" stroke-width="1.25"/>' +
+        '<path d="M111,68 C109,75 115,81 124,80 C131,79 135,74 134,69 C129,73 122,74 116,72 C113,71 112,70 111,68 Z" fill="var(--lt-text)" fill-opacity="0.22" stroke="var(--lt-text)" stroke-opacity="' + (isHero ? "0.48" : "0.34") + '" stroke-width="1.15"/>' +
+        '<path d="M133,61 L139,70 L127,70 Z" fill="var(--lt-accent)" fill-opacity="0.45" stroke="var(--lt-accent)" stroke-opacity="' + opAccStrong + '" stroke-width="1.15"/>' +
         /* Central valley & Southern hills (Mandalika / Bukit Merese) contours */
-        '<path d="M68,116 C88,108 122,110 154,120" stroke="var(--lt-text)" stroke-opacity="0.14" stroke-width="0.95" stroke-dasharray="2 3"/>' +
-        '<path d="M76,154 C85,145 105,144 118,153 C124,157 115,164 98,164 C83,164 72,159 76,154 Z" stroke="var(--lt-text)" stroke-opacity="0.20" stroke-width="1"/>' +
-        '<path d="M88,155 C93,150 104,150 110,154 C113,157 108,160 99,160 C91,160 85,158 88,155 Z" stroke="var(--lt-accent)" stroke-opacity="0.26" stroke-width="0.95"/>' +
+        '<path d="M68,116 C88,108 122,110 154,120" stroke="var(--lt-text)" stroke-opacity="' + opTxtSoft + '" stroke-width="1" stroke-dasharray="2.5 3"/>' +
+        '<path d="M76,154 C85,145 105,144 118,153 C124,157 115,164 98,164 C83,164 72,159 76,154 Z" stroke="var(--lt-text)" stroke-opacity="' + opTxt + '" stroke-width="1.1"/>' +
+        '<path d="M88,155 C93,150 104,150 110,154 C113,157 108,160 99,160 C91,160 85,158 88,155 Z" stroke="var(--lt-accent)" stroke-opacity="' + opAcc + '" stroke-width="1.1"/>' +
         /* Maritime island-hopping route (Senggigi -> 3 Gili & Sekotong -> Mandalika -> Pink Beach) */
-        '<path d="M53,75 C42,68 32,54 27,43" stroke="var(--lt-accent)" stroke-opacity="0.32" stroke-width="1.05" stroke-dasharray="2.5 3"/>' +
-        '<path d="M35,134 C22,138 6,152 16,166 C34,182 88,184 122,178 C144,174 158,180 166,174" stroke="var(--lt-text)" stroke-opacity="0.18" stroke-width="0.95" stroke-dasharray="2.5 3.5"/>' +
+        '<path d="M53,75 C42,68 32,54 27,43" stroke="var(--lt-accent)" stroke-opacity="' + opAcc + '" stroke-width="1.2" stroke-dasharray="2.5 3"/>' +
+        '<path d="M35,134 C22,138 6,152 16,166 C34,182 88,184 122,178 C144,174 158,180 166,174" stroke="var(--lt-text)" stroke-opacity="' + opTxtSoft + '" stroke-width="1.05" stroke-dasharray="2.5 3.5"/>' +
         "</g>"
       );
     }
 
-    function buildLombokCulturalMotif() {
+    function buildLombokCulturalMotif(mode) {
+      var isHero = mode === "hero";
+      var opAcc = isHero ? "0.60" : "0.42";
+      var opTxt = isHero ? "0.40" : "0.28";
       return (
-        /* Bale Lumbung Sasak traditional curved roof barn & Songket Subahnale diamond */
+        /* Bale Lumbung Sasak traditional curved roof barn */
         '<g fill="none" stroke-linecap="round" stroke-linejoin="round">' +
-        '<path d="M0,-32 C6,-32 15,-16 20,4 C22,10 24,13 28,15 L-28,15 C-24,13 -22,10 -20,4 C-15,-16 -6,-32 0,-32 Z" fill="var(--lt-accent)" fill-opacity="0.06" stroke="var(--lt-accent)" stroke-opacity="0.32" stroke-width="1.3"/>' +
-        '<path d="M0,-26 C4,-26 11,-12 15,5 M0,-26 C-4,-26 -11,-12 -15,5" stroke="var(--lt-text)" stroke-opacity="0.16" stroke-width="0.95"/>' +
-        '<path d="M0,-17 L5,-6 L-5,-6 Z" stroke="var(--lt-accent)" stroke-opacity="0.34" stroke-width="1.05"/>' +
-        '<path d="M-22,15 L22,15 M-18,19 L18,19 M-13,21 L-13,32 M13,21 L13,32 M-5,21 L-5,32 M5,21 L5,32 M-21,32 L21,32" stroke="var(--lt-text)" stroke-opacity="0.24" stroke-width="1.1"/>' +
-        '<ellipse cx="-13" cy="20" rx="2.5" ry="1" stroke="var(--lt-accent)" stroke-opacity="0.32" stroke-width="1"/>' +
-        '<ellipse cx="13" cy="20" rx="2.5" ry="1" stroke="var(--lt-accent)" stroke-opacity="0.32" stroke-width="1"/>' +
+        '<path d="M0,-32 C6,-32 15,-16 20,4 C22,10 24,13 28,15 L-28,15 C-24,13 -22,10 -20,4 C-15,-16 -6,-32 0,-32 Z" fill="var(--lt-accent)" fill-opacity="' + (isHero ? "0.14" : "0.08") + '" stroke="var(--lt-accent)" stroke-opacity="' + opAcc + '" stroke-width="' + (isHero ? "1.6" : "1.35") + '"/>' +
+        '<path d="M0,-26 C4,-26 11,-12 15,5 M0,-26 C-4,-26 -11,-12 -15,5" stroke="var(--lt-text)" stroke-opacity="' + (isHero ? "0.32" : "0.20") + '" stroke-width="1.05"/>' +
+        '<path d="M0,-17 L5.5,-5.5 L-5.5,-5.5 Z" fill="var(--lt-accent)" fill-opacity="0.22" stroke="var(--lt-accent)" stroke-opacity="' + opAcc + '" stroke-width="1.2"/>' +
+        '<path d="M-22,15 L22,15 M-18,19 L18,19 M-13,21 L-13,32 M13,21 L13,32 M-5,21 L-5,32 M5,21 L5,32 M-22,32 L22,32" stroke="var(--lt-text)" stroke-opacity="' + opTxt + '" stroke-width="1.25"/>' +
+        '<ellipse cx="-13" cy="20" rx="2.8" ry="1.15" stroke="var(--lt-accent)" stroke-opacity="' + opAcc + '" stroke-width="1.15"/>' +
+        '<ellipse cx="13" cy="20" rx="2.8" ry="1.15" stroke="var(--lt-accent)" stroke-opacity="' + opAcc + '" stroke-width="1.15"/>' +
         "</g>"
       );
     }
 
-    function buildSongketDiamondMotif() {
+    function buildSongketDiamondMotif(mode) {
+      var isHero = mode === "hero";
+      var opAcc = isHero ? "0.56" : "0.38";
+      var opTxt = isHero ? "0.36" : "0.24";
       return (
         '<g fill="none" stroke-linecap="round" stroke-linejoin="round">' +
-        '<path d="M0,-26 L26,0 L0,26 L-26,0 Z" stroke="var(--lt-accent)" stroke-opacity="0.28" stroke-width="1.15"/>' +
-        '<path d="M0,-18 L18,0 L0,18 L-18,0 Z" stroke="var(--lt-text)" stroke-opacity="0.20" stroke-width="1"/>' +
-        '<path d="M0,-9 L9,0 L0,9 L-9,0 Z" fill="var(--lt-accent)" fill-opacity="0.10" stroke="var(--lt-accent)" stroke-opacity="0.34" stroke-width="1"/>' +
-        '<circle cx="0" cy="0" r="2" fill="var(--lt-accent)" fill-opacity="0.38"/>' +
-        '<path d="M-33,0 L-26,0 M26,0 L33,0 M0,-33 L0,-26 M0,26 L0,33" stroke="var(--lt-text)" stroke-opacity="0.20" stroke-width="1"/>' +
+        '<path d="M0,-26 L26,0 L0,26 L-26,0 Z" stroke="var(--lt-accent)" stroke-opacity="' + opAcc + '" stroke-width="' + (isHero ? "1.45" : "1.2") + '"/>' +
+        '<path d="M0,-18 L18,0 L0,18 L-18,0 Z" stroke="var(--lt-text)" stroke-opacity="' + opTxt + '" stroke-width="1.15"/>' +
+        '<path d="M0,-9 L9,0 L0,9 L-9,0 Z" fill="var(--lt-accent)" fill-opacity="' + (isHero ? "0.22" : "0.14") + '" stroke="var(--lt-accent)" stroke-opacity="' + opAcc + '" stroke-width="1.2"/>' +
+        '<circle cx="0" cy="0" r="2.3" fill="var(--lt-accent)" fill-opacity="' + (isHero ? "0.62" : "0.42") + '"/>' +
+        '<path d="M-33,0 L-26,0 M26,0 L33,0 M0,-33 L0,-26 M0,26 L0,33" stroke="var(--lt-text)" stroke-opacity="' + opTxt + '" stroke-width="1.15"/>' +
+        "</g>"
+      );
+    }
+
+    function buildCompassRoseMotif(mode) {
+      var isHero = mode === "hero";
+      return (
+        '<g fill="none" stroke-linecap="round" stroke-linejoin="round">' +
+        '<circle cx="0" cy="0" r="19" stroke="var(--lt-text)" stroke-opacity="' + (isHero ? "0.30" : "0.18") + '" stroke-width="1.1" stroke-dasharray="2.5 3"/>' +
+        '<circle cx="0" cy="0" r="11.5" stroke="var(--lt-accent)" stroke-opacity="' + (isHero ? "0.48" : "0.30") + '" stroke-width="1.15"/>' +
+        '<path d="M0,-23 L3.5,-4 L23,0 L3.5,4 L0,23 L-3.5,4 L-23,0 L-3.5,-4 Z" fill="var(--lt-accent)" fill-opacity="' + (isHero ? "0.18" : "0.10") + '" stroke="var(--lt-accent)" stroke-opacity="' + (isHero ? "0.58" : "0.38") + '" stroke-width="1.2"/>' +
+        '<circle cx="0" cy="0" r="2.2" fill="var(--lt-text)" fill-opacity="' + (isHero ? "0.45" : "0.28") + '"/>' +
         "</g>"
       );
     }
@@ -1144,32 +1168,43 @@
     var lombokBgLayerHtml =
       isLombokSite && hasPatternBg
         ? '<g class="lt-lombok-bg-art">' +
+          /* Desktop flank ornaments */
           '<g transform="translate(535, 36) scale(1.72)">' +
-          buildLombokIslandMotif("lt-lombok-map-top") +
+          buildLombokIslandMotif("lt-lombok-map-top", "bg") +
           "</g>" +
           '<g transform="translate(18, 470) scale(1.55)">' +
-          buildLombokIslandMotif("lt-lombok-map-mid") +
+          buildLombokIslandMotif("lt-lombok-map-mid", "bg") +
           "</g>" +
           '<g transform="translate(545, 980) scale(1.62)">' +
-          buildLombokIslandMotif("lt-lombok-map-bot") +
+          buildLombokIslandMotif("lt-lombok-map-bot", "bg") +
+          "</g>" +
+          /* Mobile-safe center-band Pulau Lombok & Sasak motifs (visible even under narrow slice) */
+          '<g transform="translate(355, 295) scale(1.12)">' +
+          buildLombokIslandMotif("lt-lombok-map-center-1", "bg") +
+          "</g>" +
+          '<g transform="translate(345, 865) scale(1.18)">' +
+          buildLombokIslandMotif("lt-lombok-map-center-2", "bg") +
+          "</g>" +
+          '<g transform="translate(365, 1340) scale(1.08)">' +
+          buildLombokIslandMotif("lt-lombok-map-center-3", "bg") +
           "</g>" +
           '<g transform="translate(105, 195) scale(1.25)">' +
-          buildLombokCulturalMotif() +
+          buildLombokCulturalMotif("bg") +
           "</g>" +
           '<g transform="translate(785, 620) scale(1.25)">' +
-          buildLombokCulturalMotif() +
+          buildLombokCulturalMotif("bg") +
           "</g>" +
           '<g transform="translate(115, 1180) scale(1.2)">' +
-          buildLombokCulturalMotif() +
+          buildLombokCulturalMotif("bg") +
           "</g>" +
           '<g transform="translate(760, 415) scale(1.15)">' +
-          buildSongketDiamondMotif() +
+          buildSongketDiamondMotif("bg") +
           "</g>" +
           '<g transform="translate(120, 860) scale(1.15)">' +
-          buildSongketDiamondMotif() +
+          buildSongketDiamondMotif("bg") +
           "</g>" +
           '<g transform="translate(770, 1380) scale(1.15)">' +
-          buildSongketDiamondMotif() +
+          buildSongketDiamondMotif("bg") +
           "</g>" +
           "</g>"
         : "";
@@ -1205,37 +1240,32 @@
           "</svg>"
         : "";
 
-    var lombokHeroLayerHtml =
+    /* Responsive corner-anchored Lombok Hero Ornaments (zero cropping on mobile & desktop) */
+    var lombokHeroOrnamentsHtml =
       isLombokSite && hasPatternBg
-        ? '<g class="lt-lombok-hero-art">' +
-          /* Right side of Hero Card: Pulau Lombok & 3 Gili & Rinjani Contour Map */
-          '<g transform="translate(382, 16) scale(1.16)">' +
-          buildLombokIslandMotif("lt-lombok-hero-map") +
-          "</g>" +
-          /* Left side of Hero Card: Nautical Compass, Bale Lumbung Sasak & Songket Subahnale */
-          '<g transform="translate(46, 52)" fill="none" stroke-linecap="round" stroke-linejoin="round">' +
-          '<circle cx="0" cy="0" r="18" stroke="var(--lt-text)" stroke-opacity="0.16" stroke-width="1" stroke-dasharray="2 3"/>' +
-          '<circle cx="0" cy="0" r="11" stroke="var(--lt-accent)" stroke-opacity="0.26" stroke-width="1"/>' +
-          '<path d="M0,-22 L3,-4 L22,0 L3,4 L0,22 L-3,4 L-22,0 L-3,-4 Z" fill="var(--lt-accent)" fill-opacity="0.08" stroke="var(--lt-accent)" stroke-opacity="0.34" stroke-width="1.05"/>' +
-          "</g>" +
-          '<g transform="translate(56, 178) scale(0.95)">' +
-          buildLombokCulturalMotif() +
-          "</g>" +
-          '<g transform="translate(38, 266) scale(0.76)">' +
-          buildSongketDiamondMotif() +
-          "</g>" +
-          '<g transform="translate(94, 282) scale(0.55)">' +
-          buildSongketDiamondMotif() +
-          "</g>" +
-          "</g>"
+        ? '<div class="lt-lombok-hero-art" aria-hidden="true">' +
+          '<svg class="lt-lombok-hero-map-svg" viewBox="0 12 195 180" preserveAspectRatio="xMidYMid meet">' +
+          buildLombokIslandMotif("lt-lombok-hero-map", "hero") +
+          "</svg>" +
+          '<svg class="lt-lombok-hero-lumbung-svg" viewBox="-36 -38 72 78" preserveAspectRatio="xMidYMid meet">' +
+          buildLombokCulturalMotif("hero") +
+          "</svg>" +
+          '<svg class="lt-lombok-hero-compass-svg" viewBox="-26 -26 52 52" preserveAspectRatio="xMidYMid meet">' +
+          buildCompassRoseMotif("hero") +
+          "</svg>" +
+          '<svg class="lt-lombok-hero-songket-svg" viewBox="-36 -36 72 72" preserveAspectRatio="xMidYMid meet">' +
+          buildSongketDiamondMotif("hero") +
+          "</svg>" +
+          '<div class="lt-lombok-songket-border"></div>' +
+          "</div>"
         : "";
 
     var heroWavesHtml =
       isWave || (isLombokSite && hasPatternBg)
         ? '<div class="lt-hero-waves-wrap" aria-hidden="true">' +
-          '<svg class="lt-hero-waves" viewBox="0 0 600 320" preserveAspectRatio="xMidYMid slice">' +
           (isWave
-            ? "<defs>" +
+            ? '<svg class="lt-hero-waves" viewBox="0 0 600 320" preserveAspectRatio="none">' +
+              "<defs>" +
               '<linearGradient id="ltHw1_' + wid + '" x1="0%" y1="0%" x2="100%" y2="85%">' +
               '<stop offset="0%" style="stop-color:var(--lt-hero-wave-1);stop-opacity:0.78"/>' +
               '<stop offset="48%" style="stop-color:var(--lt-hero-wave-1);stop-opacity:0.26"/>' +
@@ -1260,12 +1290,31 @@
               '<path d="M-10,0 L610,0 L610,58 C465,10 315,66 180,22 C88,-6 25,34 -10,54 Z" fill="url(#ltHw1_' + wid + ')"/>' +
               '<path d="M-10,6 C135,46 340,-10 610,48 L610,122 C375,38 165,102 -10,48 Z" fill="url(#ltHw4_' + wid + ')"/>' +
               '<path d="M-10,66 C120,12 250,36 430,82 C515,102 565,84 610,52 L610,330 L-10,330 Z" fill="url(#ltHw2_' + wid + ')"/>' +
-              '<path d="M350,0 L610,0 L610,38 C525,18 435,30 350,0 Z" fill="url(#ltHw3_' + wid + ')"/>'
+              '<path d="M350,0 L610,0 L610,38 C525,18 435,30 350,0 Z" fill="url(#ltHw3_' + wid + ')"/>' +
+              "</svg>"
             : "") +
-          lombokHeroLayerHtml +
-          "</svg>" +
+          lombokHeroOrnamentsHtml +
           "</div>"
         : '<div class="lt-hero-waves-wrap" aria-hidden="true"></div>';
+
+    var lombokFooterEmblemHtml =
+      isLombokSite && hasPatternBg
+        ? '<div class="lt-lombok-footer-emblem" aria-hidden="true">' +
+          '<svg viewBox="0 0 320 56" width="248" height="44" fill="none">' +
+          '<line x1="8" y1="28" x2="88" y2="28" stroke="var(--lt-accent)" stroke-opacity="0.35" stroke-width="1"/>' +
+          '<line x1="232" y1="28" x2="312" y2="28" stroke="var(--lt-accent)" stroke-opacity="0.35" stroke-width="1"/>' +
+          '<g transform="translate(104, 28) scale(0.42)">' +
+          buildSongketDiamondMotif("hero") +
+          "</g>" +
+          '<g transform="translate(132, 4) scale(0.24)">' +
+          buildLombokIslandMotif("lt-lombok-footer-map", "hero") +
+          "</g>" +
+          '<g transform="translate(216, 28) scale(0.42)">' +
+          buildSongketDiamondMotif("hero") +
+          "</g>" +
+          "</svg>" +
+          "</div>"
+        : "";
 
     var topbarHtml =
       '<div class="lt-topbar' +
@@ -1426,6 +1475,7 @@
       "</section>" +
       /* Footer */
       '<footer class="lt-footer">' +
+      lombokFooterEmblemHtml +
       "<div>© " +
       year +
       " " +
